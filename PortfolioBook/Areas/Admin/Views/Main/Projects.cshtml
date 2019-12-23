@@ -1,0 +1,21 @@
+﻿@model List<PortfolioBook.Models.Project>
+
+@{
+    ViewBag.Title = "Projects";
+}
+
+<h2>Projects</h2>
+@foreach (var item in Model)
+{
+    @item.ProjectName
+    if(item.Confirmed == false)
+    {
+        @Html.ActionLink("Onayla","ConfirmProject",new { id=item.ProjectID})
+    }
+    else
+    {
+        @Html.ActionLink("Onayı Kaldır","UnconfirmProject",new { id= item.ProjectID})
+        
+    }
+    <hr />
+}

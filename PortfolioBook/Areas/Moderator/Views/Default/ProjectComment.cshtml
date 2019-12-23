@@ -1,0 +1,13 @@
+﻿@model List<PortfolioBook.Models.ProjectComment>
+
+@{
+    ViewBag.Title = "ProjectComment";
+}
+
+<h2>ProjectComment</h2>
+
+@foreach (var item in Model)
+{
+    @item.ProjectCommentText
+    @Html.ActionLink("Yorumu Sil","DeleteProjectComment",new { id = item.ProjectCommentID})
+}

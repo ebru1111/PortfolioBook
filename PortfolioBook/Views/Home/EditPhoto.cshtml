@@ -1,0 +1,13 @@
+﻿@model PortfolioBook.Models.Photo
+@{
+    ViewBag.Title = "EditPhoto";
+}
+
+<h2>EditPhoto</h2>
+
+@using (Html.BeginForm("EditPhoto", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <input type="text" name="altText" value="@Model.AltText" />
+    @Html.ActionLink("Projeye Dön","Project","Home",new { id = Model.ProjectID},null);
+
+}

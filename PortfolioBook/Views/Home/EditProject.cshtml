@@ -1,0 +1,12 @@
+﻿@model PortfolioBook.Models.Project
+
+@{
+    ViewBag.Title = "EditProject";
+}
+
+<h2>EditProject</h2>
+@using (Html.BeginForm("EditProject", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <input type="text" name="projectName" value="@Model.ProjectName" />
+    <input type="submit" />
+}

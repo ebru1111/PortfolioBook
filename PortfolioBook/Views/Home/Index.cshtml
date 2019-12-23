@@ -1,0 +1,17 @@
+﻿@model List<PortfolioBook.Models.Project>
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@foreach (var item in Model)
+{
+    @item.ProjectName
+    <hr />
+    foreach (var item2 in item.Photos)
+    {
+<div>
+    <img src="@Url.Content(item2.ImageUrl)" />
+</div>
+    }
+    <hr />
+}

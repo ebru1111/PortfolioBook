@@ -1,0 +1,19 @@
+﻿@model List<PortfolioBook.Models.Photo>
+
+@{
+    ViewBag.Title = "Photos";
+}
+
+<h2>Photos</h2>
+@foreach (var item in Model)
+{
+    <img src="@Url.Content(item.ImageUrl)" />
+    if(item.Confirmed == false)
+    {
+        @Html.ActionLink("Onayla","ConfirmPhoto",new { id=item.PhotoID})
+    }
+    else
+    {
+        @Html.ActionLink("Onayı Kaldır","UnconfirmPhoto",new { id= item.PhotoID})
+    }
+}

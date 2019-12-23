@@ -1,0 +1,19 @@
+﻿@model PortfolioBook.Models.Photo
+    @using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Photo";
+}
+
+<h2>Photo</h2>
+@Html.ActionLink("Fotoğrafı Düzenle","EditPhoto", new { id = Model.PhotoID})
+@Html.ActionLink("Fotoğrafı Sil","DeletePhoto",  new { id = Model.PhotoID })
+@Html.ActionLink("Yorum Yap","AddPhotoComment", new { id = Model.PhotoID})
+<img src="@Url.Content(Model.ImageUrl)" />
+@foreach (var item in Model.PhotoComments)
+{
+    <p>@item.PhotoCommentText</p>
+    if (User.Identity.GetUserId() == item.ApplicationUserID)
+    {
+        @Html.ActionLink("Yorum Sil","DeletePhotoComment", new { id= item.PhotoCommentID })
+    }
+}

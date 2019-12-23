@@ -1,0 +1,70 @@
+﻿@model PortfolioBook.Models.Project
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Project";
+}
+
+<div class="container" style="margin-top:20px">
+    @if (User.Identity.GetUserId() == Model.ApplicationUser.Id)
+    {
+    <div class="row " style="margin-bottom:20px">
+        <div >
+            @Html.ActionLink("Fotoğraf Ekle", "AddPhoto", new { id = Model.ProjectID }, new { @class="btn btn-success col-md-2" })
+        </div>
+        <div >
+            @Html.ActionLink("Projeyi Düzenle", "EditProject", new { id = Model.ProjectID },new { @class="btn btn-success col-md-2", @style="margin-left:10px" })
+        </div>
+        <div>
+            @Html.ActionLink("Projeyi Sil", "DeleteProject", new { id = Model.ProjectID },new { @class="btn btn-success col-md-2", @style="margin-left:10px" })
+        </div>
+    </div>
+        }
+        @foreach (var item in Model.Photos)
+        {
+            if (item.Confirmed == true)
+            {
+                <img src="@Url.Content(item.ImageUrl)" />
+                @Html.ActionLink("Fotoğrafı Gör", "Photo", new { id = item.PhotoID }, new { @class="btn btn-success" })
+            }
+        }
+        @foreach (var item in Model.ProjectComments)
+        {
+            <div>
+                <p>Kullanıcı: @item.ApplicationUser.UserName</p>
+            </div>
+            <div>
+                <p>Yorum:@item.ProjectCommentText</p>
+            </div>
+            <hr />
+            if (item.Project.ApplicationUser.Id == User.Identity.GetUserId())
+            {
+                <div style="margin-bottom:20px">
+                    @Html.ActionLink("Yorumu Sil", "DeleteProjectComment", new { id = item.ProjectCommentID }, new { @class="btn btn-success" })
+                </div>
+            }
+        }
+        <div style="margin-bottom:20px">
+            @Html.ActionLink("Yorum Yap", "AddProjectComment", new { id = Model.ProjectID }, new { @class="btn btn-success " })
+        </div>
+
+        <div class="row">
+            <div class="btn btn-warning">
+                @Html.ActionLink("Star", "AddStar1", new { id = Model.ProjectID })
+            </div>
+            <div class=" btn btn-warning">
+                @Html.ActionLink("Star", "AddStar2", new { id = Model.ProjectID })
+            </div>
+            <div class="btn btn-warning">
+                @Html.ActionLink("Star", "AddStar3", new { id = Model.ProjectID })
+            </div>
+            <div class="btn btn-warning">
+                @Html.ActionLink("Star", "AddStar4", new { id = Model.ProjectID })
+            </div>
+            <div class="btn btn-warning">
+
+                @Html.ActionLink("Star", "AddStar5", new { id = Model.ProjectID })
+            </div>
+        </div>
+
+
+    </div>
